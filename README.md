@@ -1,6 +1,6 @@
 # ATMega328P-Analog-Input
 Firmware for an ATMega328P, coupled with ardiuno nano. This firmware package configures the MCU to enable the ADC on specified analog input pins for signal capture. 
-
+Referenced [Datasheet](https://circuitdigest.com/sites/default/files/HD44780U.pdf) 
 MCU --> ATMega328P on a arduinonano
 Peripheral --> KY-028 Digital Temperature Sensor Module (specifically using the A0 analog signal pin)
   - Note, any input analog signal can work with this setup. A temperature sensor was tested, so was a PWM signal from another arduino. 
