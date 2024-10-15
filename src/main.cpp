@@ -36,13 +36,24 @@ float grabAns();
 
 
 void startConversion(){
-  ADCSRA |= _BV(ADSC);
+  /*
+  Function to start the conversion of the ADC values by writing a 1 to ADSC place in ADC status register A
+  */
+  ADCSRA |= _BV(ADSC); //analogus to (1 << ADSC) 
 }
 
 void setupADC(){
-  ADMUX = 0b00000101;
+  /*
+  Function to setup the ADC into a state where it will be able to read the input values. 
+  ADMUX is set such that an external voltage is passed for the reference and setting up ADC5 for single ended input use.
+  ADCSRA  is the ADC status register A, and is enabled to accept input. ADATE is also set to auto trigger a capture of the read values.
+
+  ADPS0,1,2 are set as to set a division factor between system clock freq and input clock on ADC. Here the ATMega328P has a 16 MHz clock, and the division factor is 128.
+  */
+  ADMUX = 0b00000101; 
   ADCSRA = _BV(ADEN) | _BV(ADPS0) | _BV(ADPS1) | _BV(ADPS2) | _BV(ADATE);
   ADCSRB = 0x00;
+  ADLAR = 0;
   DIDR0 |= (1 << ADC5D);
 
 
